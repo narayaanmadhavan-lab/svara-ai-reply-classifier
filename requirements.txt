@@ -1,0 +1,10 @@
+﻿pandas
+numpy
+scikit-learn
+lightgbm
+joblib
+transformers>=4.0.0
+datasets
+torch
+fastapi
+uvicorn
