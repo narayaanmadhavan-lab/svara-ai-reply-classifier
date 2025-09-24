@@ -1,160 +1,86 @@
-﻿# \# Reply Classification System
+Reply Classification System
 
-# 
+A comprehensive machine learning pipeline for automatically classifying customer reply sentiments in sales communications.
+This system processes text responses and categorizes them as positive, negative, or neutral to help prioritize follow-up actions.
 
-# A comprehensive machine learning pipeline for automatically classifying customer reply sentiments in sales communications. This system processes text responses and categorizes them as positive, negative, or neutral to help prioritize follow-up actions.
+Performance Results
 
-# 
+The system implements and compares three different approaches:
 
-# \## Performance Results
+Logistic Regression with TF-IDF: 99.76% accuracy, 99.76% weighted F1-score
 
-# 
+LightGBM: 98.59% accuracy, 98.59% weighted F1-score
 
-# The system implements and compares three different approaches:
+DistilBERT (Fine-tuned): 100% accuracy, 100% weighted F1-score
 
-# 
+Features
 
-# \- \*\*Logistic Regression with TF-IDF\*\*: 99.76% accuracy, 99.76% weighted F1-score
+Multi-model approach with automatic fallback strategy
 
-# \- \*\*LightGBM\*\*: 98.59% accuracy, 98.59% weighted F1-score  
+RESTful API for real-time predictions
 
-# \- \*\*DistilBERT (Fine-tuned)\*\*: 100% accuracy, 100% weighted F1-score
+Containerized deployment with Docker
 
-# 
+Comprehensive evaluation metrics
 
-# \## Features
+Production-ready with confidence scoring
 
-# 
+Technologies Used
 
-# \- Multi-model approach with automatic fallback strategy
+Python 3.x
 
-# \- RESTful API for real-time predictions
+Transformers (Hugging Face)
 
-# \- Containerized deployment with Docker
+FastAPI
 
-# \- Comprehensive evaluation metrics
+scikit-learn
 
-# \- Production-ready with confidence scoring
+LightGBM
 
-# 
+PyTorch
 
-# \## Technologies Used
+Docker
 
-# 
+Quick Start
+1. Install dependencies
+pip install -r requirements.txt
 
-# \- Python 3.x
+2. Train models
+python train.py
 
-# \- Transformers (Hugging Face)
+3. Start API server
+uvicorn app:app --host 0.0.0.0 --port 8000
 
-# \- FastAPI
+4. Test prediction
+curl -X POST "http://localhost:8000/predict" \
+     -H "Content-Type: application/json" \
+     -d '{"text":"Looking forward to the demo!"}'
 
-# \- scikit-learn
+API Usage
 
-# \- LightGBM
+Endpoint:
 
-# \- PyTorch
+POST /predict
 
-# \- Docker
 
-# 
+Request:
 
-# \## Quick Start
+{
+  "text": "Your reply text here"
+}
 
-# 
 
-# 1\. \*\*Install dependencies\*\*
+Response:
 
-# pip install -r requirements.txt
+{
+  "label": "positive",
+  "confidence": 0.9971
+}
 
-# 
+Model Selection Strategy
 
-# text
+CPU-only production: Uses TF-IDF + LightGBM for fast inference
 
-# 
+GPU-enabled production: Uses fine-tuned DistilBERT for maximum accuracy
 
-# 2\. \*\*Train models\*\*
-
-# python train.py
-
-# 
-
-# text
-
-# 
-
-# 3\. \*\*Start API server\*\*
-
-# uvicorn app:app --host 0.0.0.0 --port 8000
-
-# 
-
-# text
-
-# 
-
-# 4\. \*\*Test prediction\*\*
-
-# curl -X POST "http://localhost:8000/predict" -H "Content-Type: application/json" -d "{"text":"Looking forward to the demo!"}"
-
-# 
-
-# text
-
-# 
-
-# \## API Usage
-
-# 
-
-# \*\*Endpoint:\*\* POST /predict
-
-# 
-
-# \*\*Request:\*\*
-
-# {
-
-# "text": "Your reply text here"
-
-# }
-
-# 
-
-# text
-
-# 
-
-# \*\*Response:\*\*
-
-# {
-
-# "label": "positive",
-
-# "confidence": 0.9971
-
-# }
-
-# 
-
-# text
-
-# 
-
-# \## Model Selection Strategy
-
-# 
-
-# \- \*\*CPU-only production\*\*: Uses TF-IDF + LightGBM for fast inference
-
-# \- \*\*GPU-enabled production\*\*: Uses fine-tuned DistilBERT for maximum accuracy
-
-# \- \*\*Hybrid approach\*\*: Automatic model selection based on available resources
-
-# 
-
-# \## License
-
-# 
-
-# MIT License
-
+Hybrid approach: Automatic model selection based on available resources
